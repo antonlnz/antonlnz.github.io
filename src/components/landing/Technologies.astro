@@ -1,0 +1,116 @@
+---
+// Assets
+import { Image } from "astro:assets";
+// Logos
+import CIcon from "@/images/icons/c.svg";
+import JavaIcon from "@/images/icons/java.svg";
+import PythonIcon from "@/images/icons/python.svg";
+import NextJSIcon from "@/images/icons/nextjs.svg";
+import CSSIcon from "@/images/icons/css.svg";
+import HTMLIcon from "@/images/icons/html.svg";
+import JavaScriptIcon from "@/images/icons/javascript.svg";
+import OcamlIcon from "@/images/icons/ocaml.svg";
+import SqlIcon from "@/images/icons/sql.svg";
+
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const technologies = [
+  {
+    name: "C",
+    icon: CIcon,
+    url: "https://en.wikipedia.org/wiki/C_(programming_language)",
+    invertInDark: true,
+  },
+  {
+    name: "Java",
+    icon: JavaIcon,
+    url: "https://www.oracle.com/java/",
+    invertInDark: true,
+  },
+  {
+    name: "Python",
+    icon: PythonIcon,
+    url: "https://www.python.org/",
+  },
+  {
+    name: "Next.js",
+    icon: NextJSIcon,
+    url: "https://nextjs.org/",
+  },
+  {
+    name: "CSS",
+    icon: CSSIcon,
+    url: "https://www.w3.org/Style/CSS/",
+  },
+  {
+    name: "HTML",
+    icon: HTMLIcon,
+    url: "https://html.spec.whatwg.org/",
+  },
+  {
+    name: "JavaScript",
+    icon: JavaScriptIcon,
+    url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+  },
+  {
+    name: "OCaml",
+    icon: OcamlIcon,
+    url: "https://ocaml.org/",
+  },
+  {
+    name: "SQL",
+    icon: SqlIcon,
+    url: "https://en.wikipedia.org/wiki/SQL",
+    invertInDark: true,
+  },
+];
+---
+
+<section>
+  <Wrapper variant="standard">
+    <div
+      class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b py-8 border-base-200 dark:border-base-800"
+    >
+      <div class="lg:sticky lg:top-24 lg:z-40 self-start">
+        <Text tag="h2" variant="textSM" class="text-base-900 dark:text-white">
+          Technologies
+        </Text>
+      </div>
+      <div class="lg:col-span-2">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {
+            technologies.map((tech) => (
+              <a
+                href={tech.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex flex-col items-center gap-3 p-4 rounded-xl hover:bg-base-50 dark:hover:bg-base-800/20 transition-colors duration-200"
+              >
+                <div class="relative">
+                  <Image
+                    src={tech.icon}
+                    alt={`${tech.name} logo`}
+                    width={48}
+                    height={48}
+                    loading="lazy"
+                    decoding="async"
+                    class={`size-12 object-contain transition-transform duration-200 group-hover:scale-110 ${tech.invertInDark ? 'dark:invert dark:brightness-90' : ''}`}
+                  />
+                </div>
+                <Text
+                  tag="span"
+                  variant="textXS"
+                  class="text-center text-base-700 dark:text-base-300 group-hover:text-base-900 dark:group-hover:text-white transition-colors duration-200"
+                >
+                  {tech.name}
+                </Text>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>
