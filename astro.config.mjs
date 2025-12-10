@@ -6,6 +6,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+
+  build: {
+    sourcemap: false,
+  },
   
   site: process.env.SITE || 'https://antonlnz.github.io',
   integrations: [sitemap()]
