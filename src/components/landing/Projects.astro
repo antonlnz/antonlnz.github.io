@@ -5,6 +5,7 @@ import Iter from "@/images/icons/iter.svg";
 import Lexora from "@/images/icons/lexora.svg";
 import Java from "@/images/icons/java.svg";
 import C from "@/images/icons/c.svg";
+import SpainTimes from "@/images/icons/spain-times.svg";
 
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
@@ -17,6 +18,14 @@ const data = [
     image: Iter,
     link: "https://github.com/antonlnz/iter-multi-model-search-chatbot",
     description: `Developed an intelligent chatbot for the ITER website powered by GraphRAG (Graph-enhanced Retrieval-Augmented Generation). It leverages ITER's official website content to deliver accurate, verifiable and context-aware answers about the ITER project and nuclear fusion energy. Built on a microservices architecture using Docker, a vector database, an LLM and support services.`,
+  },
+  {
+    year: "2026",
+    title: "Online newspaper inspired in The New York Times",
+    image: SpainTimes,
+    link: "https://news.antonlnz.com",
+    description: `Created an online newspaper inspired by The New York Times. Built with SvelteKit, it offers a responsive design and a user-friendly interface for an optimal reading experience across devices.`,   
+    invertInDark: true,
   },
   {
     year: "2025",
@@ -57,9 +66,9 @@ const data = [
       <div class="lg:col-span-2 flex flex-col gap-8">
         {
           data.map((project) => (
-            <article class="group relative grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start ">
-                 <div class="absolute -inset-x-1 -inset-y-4 z-0 scale-95 bg-base-50 dark:bg-base-800/20    opacity-0 transition group-hover:scale-100 group-hover:opacity-100 -inset-x-4 rounded-2xl duration-300 " />
-              <div class="lg:col-span-2">
+            <article class="group relative grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start lg:gap-6">
+                 <div class="absolute -inset-x-1 -inset-y-4 z-0 scale-95 bg-base-50 dark:bg-base-800/20 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 -inset-x-4 rounded-2xl duration-300 " />
+              <div class="min-w-0">
                <div class="flex items-center gap-4 relative">
                   <Image
                     src={project.image}
@@ -83,6 +92,13 @@ const data = [
                         </>
                       </a>
                     </Text>
+                    <Text
+                      tag="p"
+                      variant="textXS"
+                      class="relative z-10 mt-1 text-base-500 dark:text-base-500 lg:hidden"
+                    >
+                      <time datetime={project.year}> {project.year}</time>
+                    </Text>
                   <Text
                     tag="p"
                     variant="textXS"
@@ -96,7 +112,7 @@ const data = [
               <Text
                 tag="p"
                 variant="textXS"
-                class="relative z-10   flex items-center text-sm text-base-600 dark:text-base-400  lg:ml-auto"
+                class="relative z-10 hidden lg:flex items-center text-sm text-base-600 dark:text-base-400 lg:self-start whitespace-nowrap"
               >
                 <time datetime={project.year}> {project.year}</time>
               </Text>
