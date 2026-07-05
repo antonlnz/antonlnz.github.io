@@ -1,0 +1,29 @@
+---
+// src/pages/[short].astro
+import { shortLinks } from "../data/short-links";
+
+export function getStaticPaths() {
+  return Object.entries(shortLinks).map(([short, url]) => ({
+    params: { short },
+    props: { url },
+  }));
+}
+
+const { url } = Astro.props as { url: string };
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirigiendo...</title>
+    <meta http-equiv="refresh" content={`0;url=${url}`} />
+    <link rel="canonical" href={url} />
+    <meta name="robots" content="noindex" />
+    <script is:inline define:vars={{ url }}>
+      location.replace(url);
+    </script>
+  </head>
+  <body>
+    <p>Redirigiendo a <a href={url}>{url}</a>...</p>
+  </body>
+</html>
