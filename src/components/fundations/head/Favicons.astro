@@ -1,11 +1,15 @@
-<!-- Favicons -->
-<!-- <link rel="icon" href="src/images/avatar.png" sizes="any" />
-<link rel="icon" href="src/images/avatar.png" type="image/svg+xml" />
-<link rel="apple-touch-icon" href="/images/avatar.png" />
-<link rel="manifest" href="/manifest.webmanifest" /> -->
+---
+// El favicon sale del avatar por el pipeline de imágenes: `src/` no se
+// publica, así que enlazar `src/images/avatar.png` a mano daba 404 en
+// producción y la pestaña se quedaba sin icono.
+import { getImage } from "astro:assets";
+import avatar from "@/images/avatar.png";
 
-<!-- Favicons for different sizes -->
- <link rel="icon" href="src/images/avatar.png">
-<!-- <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" /> -->
+const icon32 = await getImage({ src: avatar, width: 32, height: 32, format: "png" });
+const icon192 = await getImage({ src: avatar, width: 192, height: 192, format: "png" });
+const appleTouch = await getImage({ src: avatar, width: 180, height: 180, format: "png" });
+---
+
+<link rel="icon" type="image/png" sizes="32x32" href={icon32.src} />
+<link rel="icon" type="image/png" sizes="192x192" href={icon192.src} />
+<link rel="apple-touch-icon" href={appleTouch.src} />
