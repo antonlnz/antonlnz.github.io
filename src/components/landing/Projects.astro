@@ -2,6 +2,8 @@
 // Assets
 import { Image } from "astro:assets";
 import Iter from "@/images/icons/iter.svg";
+import Kairos from "@/images/icons/kairos-logo-dark.svg";
+import KairosClear from "@/images/icons/kairos-logo-clear.svg";
 import Lexora from "@/images/icons/lexora.svg";
 import Java from "@/images/icons/java.svg";
 import Retriever from "@/images/icons/retriever.svg";
@@ -19,6 +21,14 @@ const data = [
     image: Iter,
     link: "https://github.com/antonlnz/iter-multi-model-search-chatbot",
     description: `Developed an intelligent chatbot for the ITER website powered by GraphRAG (Graph-enhanced Retrieval-Augmented Generation). It leverages ITER's official website content to deliver accurate, verifiable and context-aware answers about the ITER project and nuclear fusion energy. Built on a microservices architecture using Docker, a vector database, an LLM and support services.`,
+  },
+  {
+    year: "2026",
+    title: "Kairos Intel",
+    image: Kairos,
+    imageDark: KairosClear,
+    link: "https://kairosintel.so",
+    description: `Designed and built a platform that watches news outlets, blogs and social networks around the clock and alerts you only when something matters. It clusters scattered posts into events and scores each one by momentum, per-topic source authority and cross-source corroboration; breaking news only fires once independent outlets report it. Monitor anything, from a competitor to a regulation, and get a daily digest written by an LLM. Event-driven architecture of a dozen Rust microservices over Redpanda, with hybrid embeddings in Qdrant and a SvelteKit PWA.`,
   },
   {
     year: "2026",
@@ -85,8 +95,19 @@ const data = [
                     height={400}
                     loading="eager"
                     decoding="async"
-                    class={`rounded-lg size-12 object-cover object-center relative ${project.invertInDark ? 'dark:invert dark:brightness-90' : ''}`}
+                    class={`rounded-lg size-12 object-cover object-center relative ${project.invertInDark ? 'dark:invert dark:brightness-90' : ''} ${project.imageDark ? 'dark:hidden' : ''}`}
                   />
+                  {project.imageDark && (
+                    <Image
+                      src={project.imageDark}
+                      alt={project.title}
+                      width={400}
+                      height={400}
+                      loading="eager"
+                      decoding="async"
+                      class="rounded-lg size-12 object-cover object-center relative hidden dark:block"
+                    />
+                  )}
                   <div>
                     <Text
                       tag="h3"
