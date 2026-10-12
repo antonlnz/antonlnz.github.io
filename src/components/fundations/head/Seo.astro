@@ -1,31 +1,26 @@
 ---
 import { AstroSeo } from "@astrolib/seo";
+
+const title = "Antón's Portfolio";
+const description = "Portfolio Antón López - Fullstack Developer";
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <AstroSeo
-  title="Your Page Title"
-  description="A detailed description of your page content."
-  canonical="https://yourwebsite.com/current-page"
+  title={title}
+  description={description}
+  canonical={canonical}
   openGraph={{
-    url: "https://yourwebsite.com/current-page",
-    title: "Your Page Title",
-    description: "A detailed description of your page content.",
-    images: [
-      {
-        url: "https://yourwebsite.com/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Open Graph Image Alt",
-        type: "image/jpeg",
-      },
-    ],
-    site_name: "Your Site Name",
+    url: canonical,
+    title,
+    description,
+    site_name: title,
     type: "website",
     locale: "en_US",
   }}
   twitter={{
-    handle: "@yourhandle",
-    site: "@yourwebsite",
-    cardType: "summary_large_image",
+    handle: "@antonlnz",
+    site: "@antonlnz",
+    cardType: "summary",
   }}
 />
